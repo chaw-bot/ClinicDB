@@ -31,3 +31,17 @@ CREATE TABLE invoices (
 	    REFERENCES medical_histories(id)
 );
 
+CREATE TABLE invoice_items (
+	id BIGSERIAL NOT NULL PRIMARY KEY,
+	unit_price DECIMAL,
+	quantity INT,
+	total_price DECIMAL,
+	invoice_id INT,
+  treatment_id INT,
+  CONSTRAINT fk_invoices
+    FOREIGN KEY (invoice_id)
+      REFERENCES invoices(id),
+  CONSTRAINT fk_treatments
+    FOREIGN KEY (treatment_id)
+      REFERENCES treatments(id)
+);
