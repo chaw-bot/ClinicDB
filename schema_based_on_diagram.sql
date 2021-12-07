@@ -20,3 +20,14 @@ CREATE TABLE medical_histories (
 	status VARCHAR(250)
 );
 
+CREATE TABLE invoices (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+	total_amount DECIMAL,
+	generated_at TIMESTAMP,
+	payed_at TIMESTAMP,
+	medical_history_id INT,
+	CONSTRAINT fk_medical_histories
+	  FOREIGN KEY (medical_history_id)
+	    REFERENCES medical_histories(id)
+);
+
