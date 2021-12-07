@@ -20,6 +20,18 @@ CREATE TABLE medical_histories (
 	status VARCHAR(250)
 );
 
+-- medical_treatment join table
+CREATE TABLE medical_treatment (
+  medical_history_id INT,
+  treatment_id INT,
+  CONSTRAINT fk_medical_histories
+    FOREIGN KEY(medical_history_id)
+      REFERENCES medical_histories(id),
+  CONSTRAINT fk_treatments
+    FOREIGN KEY(treatment_id)
+      REFERENCES treatments(id)
+);
+
 CREATE TABLE invoices (
   id BIGSERIAL NOT NULL PRIMARY KEY,
 	total_amount DECIMAL,
